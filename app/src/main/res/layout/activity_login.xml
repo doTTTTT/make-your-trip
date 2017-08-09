@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.login.LoginViewModel"/>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="100%"
+            tools:loadImageBackground="@{@string/background}"/>
+
+        <View
+            android:background="#44000000"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="100%"/>
+
+        <ImageView
+            android:id="@+id/mytLogo"
+            android:src="@mipmap/ic_launcher"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="40%"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userLogin"
+            android:layout_below="@id/mytLogo"
+            android:textColorHint="@color/colorPrimary"
+            app:layout_marginTopPercent="5%"
+            app:layout_marginBottomPercent="0%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/login"
+                android:hint="Email"
+                android:lines="1"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userPassword"
+            android:layout_below="@id/userLogin"
+            android:textColorHint="@color/colorPrimary"
+            app:layout_marginTopPercent="5%"
+            app:layout_marginBottomPercent="5%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/password"
+                android:hint="Password"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/loginIn"
+            android:layout_below="@id/userPassword"
+            android:onClick="@{(v) -> viewModel.onClickLoggin(v, login, password)}"
+            app:cpb_cornerRadius="48dp"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%"
+            app:layout_widthPercent="90%"
+            app:layout_heightPercent="15%"
+            app:cpb_textIdle="Loggin In"
+            app:cpb_textError="Error"
+            app:cpb_textComplete="Logged"/>
+
+        <TextView
+            android:layout_below="@id/loginIn"
+            android:text="Don't have an account ? Sign Up"
+            android:textColor="#88FFFFFF"
+            android:gravity="top|center_horizontal"
+            android:onClick="@{viewModel::onClickSignUp}"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_widthPercent="100%"/>
+
+        <View
+            android:id="@+id/logged"
+            android:background="@color/colorPrimary"
+            android:visibility="invisible"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="100%"/>
+
+    </android.support.percent.PercentRelativeLayout>
+</layout>

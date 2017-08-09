@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.main.MainViewModel"/>
+    </data>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".views.activity.main.MainActivity">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:loadImage="@{@string/background}"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <View
+            android:background="#44000000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.dot.makeyourtrip.utils.android.NonSwipeableViewPager
+            android:id="@+id/container"
+            android:layout_above="@+id/bottomMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@id/bottomMenu"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/backgroundMenu"
+            app:itemIconTint="@color/colorPrimary"
+            app:itemTextColor="@color/colorPrimary"
+            app:menu="@menu/menu_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</layout>

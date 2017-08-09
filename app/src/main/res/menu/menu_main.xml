@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_trips"
+        android:enabled="true"
+        android:title="Trips"
+        android:icon="@drawable/ic_local_airport_white_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_place"
+        android:enabled="true"
+        android:title="Place"
+        android:icon="@drawable/ic_room_white_24dp"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/action_lodge"
+        android:enabled="true"
+        android:title="Lodge"
+        android:icon="@drawable/ic_home_white_24dp"
+        app:showAsAction="always"/>
+
+    <!--<item-->
+        <!--android:id="@+id/action_transport"-->
+        <!--android:enabled="true"-->
+        <!--android:title="Transport"-->
+        <!--android:icon="@mipmap/ic_launcher"-->
+        <!--app:showAsAction="always"/>-->
+
+    <!--<item-->
+        <!--android:id="@+id/action_aucun"-->
+        <!--android:enabled="true"-->
+        <!--android:title="Aucun"-->
+        <!--android:icon="@mipmap/ic_launcher"-->
+        <!--app:showAsAction="always"/>-->
+</menu>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.inscription.InscriptionViewModel"/>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="100%"
+            tools:loadImageBackground="@{@string/background}"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userName"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Name"
+            app:layout_marginTopPercent="10%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/name"
+                android:lines="1"
+                android:inputType="textAutoComplete"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userEmail"
+            android:layout_below="@id/userName"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Email"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/email"
+                android:lines="1"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userPassword"
+            android:layout_below="@id/userEmail"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Password"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/password"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/userPasswordComf"
+            android:layout_below="@id/userPassword"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Password Confirmation"
+            app:layout_marginTopPercent="2.5%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginRightPercent="10%"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/passwordComf"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:lines="1"
+                android:textColor="@color/colorPrimary" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.dd.CircularProgressButton
+            android:id="@+id/signUp"
+            android:layout_below="@id/userPasswordComf"
+            android:onClick="@{(v) -> viewModel.onClickSignUp(v, name, email, password, passwordComf)}"
+            app:cpb_cornerRadius="48dp"
+            app:layout_marginTopPercent="10%"
+            app:layout_marginBottomPercent="2.5%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%"
+            app:layout_widthPercent="90%"
+            app:layout_heightPercent="15%"
+            app:cpb_textIdle="Sign Up"
+            app:cpb_textError="Please verify champ"
+            app:cpb_textComplete="Signed Up"/>
+
+    </android.support.percent.PercentRelativeLayout>
+</layout>
