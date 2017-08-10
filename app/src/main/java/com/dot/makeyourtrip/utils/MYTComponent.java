@@ -4,6 +4,9 @@ import com.dot.makeyourtrip.utils.module.RetrofitModule;
 import com.dot.makeyourtrip.utils.module.SharedPreferenceModule;
 import com.dot.makeyourtrip.utils.type.Authentification;
 import com.dot.makeyourtrip.utils.type.Lodge;
+import com.dot.makeyourtrip.utils.type.Place;
+import com.dot.makeyourtrip.utils.type.Transport;
+import com.dot.makeyourtrip.utils.type.Trip;
 import com.dot.makeyourtrip.utils.type.User;
 import com.dot.makeyourtrip.views.activity.inscription.InscriptionViewModel;
 import com.dot.makeyourtrip.views.activity.login.LoginViewModel;
@@ -20,7 +23,10 @@ import dagger.Component;
         SharedPreferenceModule.class,
         Authentification.class,
         Lodge.class,
-        User.class
+        User.class,
+        Trip.class,
+        Transport.class,
+        Place.class
 })
 public interface MYTComponent {
     void inject(MainActivity activity);

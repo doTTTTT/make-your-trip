@@ -100,10 +100,10 @@
                 android:textColor="@color/colorPrimary" />
         </android.support.design.widget.TextInputLayout>
 
+        <!--android:onClick="@{(v) -> viewModel.onClickSignUp(v, name, email, password, passwordComf)}"-->
         <com.dd.CircularProgressButton
             android:id="@+id/signUp"
             android:layout_below="@id/userPasswordComf"
-            android:onClick="@{(v) -> viewModel.onClickSignUp(v, name, email, password, passwordComf)}"
             app:cpb_cornerRadius="48dp"
             app:layout_marginTopPercent="10%"
             app:layout_marginBottomPercent="2.5%"

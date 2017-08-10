@@ -22,8 +22,7 @@ public class TripFragment extends BaseFragment<FragmentTripBinding> implements T
     @Override
     public void initView(FragmentTripBinding binding) {
         this.binding = binding;
-        TripViewModel viewModel = new TripViewModel(this);
-        getComponent().inject(viewModel);
+        TripViewModel viewModel = new TripViewModel(this, getComponent());
         binding.setViewModel(viewModel);
         List<TripModel> list = new ArrayList<>();
 

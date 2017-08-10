@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.dot.makeyourtrip.model.TripModel;
 import com.dot.makeyourtrip.utils.ApiUtils;
+import com.dot.makeyourtrip.utils.MYTComponent;
 import com.dot.makeyourtrip.utils.MYTManager;
 import com.dot.makeyourtrip.utils.type.Trip;
 
@@ -25,7 +26,8 @@ public class TripViewModel extends BaseObservable implements Callback<List<TripM
 
     private TripContract.View view;
 
-    public TripViewModel(TripContract.View view){
+    public TripViewModel(TripContract.View view, MYTComponent component){
+        component.inject(this);
         this.view = view;
 
         tripRequest.getTripUser(manager.getUserID()).enqueue(this);
