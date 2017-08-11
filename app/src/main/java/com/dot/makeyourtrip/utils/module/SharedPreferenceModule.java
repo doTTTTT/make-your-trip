@@ -2,7 +2,6 @@ package com.dot.makeyourtrip.utils.module;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.dot.makeyourtrip.utils.MYTManager;
 

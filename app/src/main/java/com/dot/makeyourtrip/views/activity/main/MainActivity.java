@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -30,6 +31,9 @@ public class MainActivity extends Activity implements View.OnClickListener, Bott
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getComponent().inject(this);
+
+        Log.d("Token", "" + manager.getToken());
+        Log.d("UserID", "" + manager.getUserID());
 
         if (manager.isLoggedIn()) {
             binding = DataBindingUtil.setContentView(this, R.layout.activity_main);

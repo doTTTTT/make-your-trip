@@ -1,10 +1,12 @@
 package com.dot.makeyourtrip.views.fragment.trip;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import com.dot.makeyourtrip.R;
 import com.dot.makeyourtrip.databinding.FragmentTripBinding;
 import com.dot.makeyourtrip.model.TripModel;
+import com.dot.makeyourtrip.utils.android.Activity;
 import com.dot.makeyourtrip.utils.android.BaseFragment;
 
 import java.util.ArrayList;
@@ -26,12 +28,13 @@ public class TripFragment extends BaseFragment<FragmentTripBinding> implements T
         binding.setViewModel(viewModel);
         List<TripModel> list = new ArrayList<>();
 
-        tripAdapter = new TripAdapter(getContext(), list);
+        tripAdapter = new TripAdapter((Activity) getActivity(), list);
 
         binding.tripList.setClipToPadding(false);
         binding.tripList.setPadding(dpToPx(30), dpToPx(50), dpToPx(30), dpToPx(50));
         binding.tripList.setPageMargin(30);
         binding.tripList.setAdapter(tripAdapter);
+        //binding.refresh.setOnRefreshListener(viewModel);
     }
 
     public int dpToPx(int dp) {
@@ -41,6 +44,12 @@ public class TripFragment extends BaseFragment<FragmentTripBinding> implements T
 
     @Override
     public void setList(List<TripModel> list) {
-        tripAdapter.notifyDataSetChanged();
+        Log.d("Size", "" + list.size());
+        tripAdapter.setList(list);
+    }
+
+    @Override
+    public void setRefreshing(Boolean refreshing) {
+        binding.refresh.setRefreshing(refreshing);
     }
 }

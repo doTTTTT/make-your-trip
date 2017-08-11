@@ -81,7 +81,7 @@ public class LoginViewModel extends BaseObservable implements Callback<AuthModel
 
         switch (response.code()) {
             case 200:
-                manager.logIn(response.body().Token);
+                manager.logIn(response.body().Token, response.body().ID);
                 loginView.onLoginComplete();
                 break;
             default:

@@ -7,5 +7,7 @@ import java.util.List;
 public interface TripContract {
     interface View {
         public void setList(List<TripModel> list);
+
+        public void setRefreshing(Boolean refreshing);
     }
 }

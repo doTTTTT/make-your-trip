@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 
 @Module
 public class Place {
-    interface PlaceRequest {
+    public interface PlaceRequest {
         @GET("/places/trip/{id}")
         Call<List<PlaceModel>> getTripPlaces(@Path("id") String ID);
 

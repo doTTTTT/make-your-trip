@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +12,17 @@ import android.view.ViewGroup;
 import com.dot.makeyourtrip.BR;
 import com.dot.makeyourtrip.R;
 import com.dot.makeyourtrip.model.TripModel;
-import com.dot.makeyourtrip.utils.type.Trip;
+import com.dot.makeyourtrip.utils.android.Activity;
 
 import java.util.List;
 
 public class TripAdapter extends PagerAdapter {
-    private Context context;
+    private Activity activity;
     private List<TripModel> list;
     private TripModel fake;
 
-    public TripAdapter(Context context, List<TripModel> list) {
-        this.context = context;
+    public TripAdapter(Activity activity, List<TripModel> list) {
+        this.activity = activity;
         this.list = list;
 
         fake = new TripModel();
@@ -35,9 +36,10 @@ public class TripAdapter extends PagerAdapter {
         TripModel model = list.get(position);
         ViewDataBinding binding = null;
         if (model.isFake) {
-            binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.list_item_trip_empty, container, false);
+            binding = DataBindingUtil.inflate(LayoutInflater.from(container.getContext()), R.layout.list_item_trip_empty, container, false);
+            binding.setVariable(BR.viewModel, new ListItemTripEmptyViewModel(activity));
         } else {
-            binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.list_item_trip, container, false);
+            binding = DataBindingUtil.inflate(LayoutInflater.from(container.getContext()), R.layout.list_item_trip, container, false);
             binding.setVariable(BR.viewModel, new ListItemTripViewModel(model));
         }
         container.addView(binding.getRoot());
@@ -59,10 +61,15 @@ public class TripAdapter extends PagerAdapter {
         return view == object;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
     public void setList(List<TripModel> list) {
-        list.clear();
-        list.addAll(list);
-        list.add(list.size(), fake);
+        this.list.clear();
+        this.list.addAll(list);
+        this.list.add(this.list.size(), fake);
         notifyDataSetChanged();
     }
 }

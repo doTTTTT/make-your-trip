@@ -14,4 +14,8 @@ public class ListItemTripViewModel extends BaseObservable {
     public void setModel(TripModel model) {
         this.model = model;
     }
+
+    public String getName(){
+        return model.Name;
+    }
 }

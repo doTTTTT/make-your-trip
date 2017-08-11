@@ -69,11 +69,10 @@
                 android:layout_height="match_parent" />
         </android.support.design.widget.TextInputLayout>
 
-
-        <!--android:onClick="@{(v) -> viewModel.onClickLoggin(v, login, password)}"-->
         <com.dd.CircularProgressButton
             android:id="@+id/loginIn"
             android:layout_below="@id/userPassword"
+            android:onClick="@{(v) -> viewModel.onClickLoggin(v, login, password)}"
             app:cpb_cornerRadius="48dp"
             app:layout_marginLeftPercent="5%"
             app:layout_marginRightPercent="5%"
@@ -88,9 +87,9 @@
             android:text="Don't have an account ? Sign Up"
             android:textColor="#88FFFFFF"
             android:gravity="top|center_horizontal"
+            android:onClick="@{viewModel::onClickSignUp}"
             app:layout_marginTopPercent="2.5%"
             app:layout_widthPercent="100%"/>
-        <!--android:onClick="@{viewModel::onClickSignUp}"-->
 
         <View
             android:id="@+id/logged"

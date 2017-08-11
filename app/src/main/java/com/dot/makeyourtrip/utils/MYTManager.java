@@ -25,8 +25,9 @@ public class MYTManager {
         return preferences.getBoolean(PREF_IS_LOGGIN_IN, false);
     }
 
-    public void logIn(String token) {
-        editor.putString(PREF_TOKEN, token).commit();
+    public void logIn(String token, String userID) {
+        editor.putString(PREF_TOKEN, "Bearer " + token).commit();
+        editor.putString(PREF_USER_ID, userID).commit();
         editor.putBoolean(PREF_IS_LOGGIN_IN, true).commit();
     }
 

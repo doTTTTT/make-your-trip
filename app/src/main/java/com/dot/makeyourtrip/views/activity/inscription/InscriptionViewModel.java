@@ -78,7 +78,7 @@ public class InscriptionViewModel extends BaseObservable implements Callback<Use
 
         switch (response.code()) {
             case 201:
-                manager.logIn(response.body().Token);
+                manager.logIn(response.body().Token, response.body().User.ID);
                 inscriptionView.onSignUpComplete();
                 break;
             default:

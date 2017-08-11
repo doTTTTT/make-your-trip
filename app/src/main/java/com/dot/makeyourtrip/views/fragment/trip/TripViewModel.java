@@ -1,6 +1,7 @@
 package com.dot.makeyourtrip.views.fragment.trip;
 
 import android.databinding.BaseObservable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
 import com.dot.makeyourtrip.model.TripModel;
@@ -17,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TripViewModel extends BaseObservable implements Callback<List<TripModel>> {
+public class TripViewModel extends BaseObservable implements Callback<List<TripModel>>, SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = TripViewModel.class.getSimpleName();
 
     @Inject Trip.TripRequest tripRequest;
@@ -30,7 +31,7 @@ public class TripViewModel extends BaseObservable implements Callback<List<TripM
         component.inject(this);
         this.view = view;
 
-        tripRequest.getTripUser(manager.getUserID()).enqueue(this);
+        tripRequest.getTripUser(manager.getToken(), manager.getUserID()).enqueue(this);
     }
 
     @Override
@@ -45,10 +46,17 @@ public class TripViewModel extends BaseObservable implements Callback<List<TripM
                 apiUtils.parseErrorAndShow(TAG, response);
                 break;
         }
+        view.setRefreshing(false);
     }
 
     @Override
     public void onFailure(Call<List<TripModel>> call, Throwable t) {
         Log.e(TAG, "" + t.getMessage());
+        view.setRefreshing(false);
+    }
+
+    @Override
+    public void onRefresh() {
+        tripRequest.getTripUser(manager.getToken(), manager.getUserID()).enqueue(this);
     }
 }

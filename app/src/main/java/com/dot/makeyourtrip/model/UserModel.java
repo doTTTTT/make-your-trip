@@ -9,6 +9,9 @@ public class UserModel {
     @SerializedName("role")
     public String Role;
 
+    @SerializedName("_id")
+    public String ID;
+
     public class UserPostModel {
         @SerializedName("token")
         public String Token;

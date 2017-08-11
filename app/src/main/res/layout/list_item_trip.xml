@@ -35,12 +35,12 @@
 
                 <TextView
                     android:id="@+id/tripName"
-                    android:text="Trip Name"
+                    android:text="@{viewModel.name}"
                     android:textSize="24dp"
                     android:gravity="center_vertical"
                     android:layout_above="@+id/tripDescription"
                     app:layout_widthPercent="100%"
-                    app:layout_heightPercent="10%"/>
+                    app:layout_heightPercent="10%" />
 
                 <TextView
                     android:id="@+id/tripDescription"

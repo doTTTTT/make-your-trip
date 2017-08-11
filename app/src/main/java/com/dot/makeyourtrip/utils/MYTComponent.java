@@ -11,6 +11,9 @@ import com.dot.makeyourtrip.utils.type.User;
 import com.dot.makeyourtrip.views.activity.inscription.InscriptionViewModel;
 import com.dot.makeyourtrip.views.activity.login.LoginViewModel;
 import com.dot.makeyourtrip.views.activity.main.MainActivity;
+import com.dot.makeyourtrip.views.fragment.place.PlaceViewModel;
+import com.dot.makeyourtrip.views.fragment.trip.AddTripDialog;
+import com.dot.makeyourtrip.views.fragment.trip.ListItemTripEmptyViewModel;
 import com.dot.makeyourtrip.views.fragment.trip.TripViewModel;
 
 import javax.inject.Singleton;
@@ -36,4 +39,10 @@ public interface MYTComponent {
     void inject(InscriptionViewModel viewModel);
 
     void inject(TripViewModel viewModel);
+
+    void inject(AddTripDialog addTripDialog);
+
+    void inject(ListItemTripEmptyViewModel listItemTripEmptyViewModel);
+
+    void inject(PlaceViewModel placeViewModel);
 }
