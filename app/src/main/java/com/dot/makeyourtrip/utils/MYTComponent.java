@@ -1,5 +1,6 @@
 package com.dot.makeyourtrip.utils;
 
+import com.dot.makeyourtrip.utils.module.GoogleImageModule;
 import com.dot.makeyourtrip.utils.module.RetrofitModule;
 import com.dot.makeyourtrip.utils.module.SharedPreferenceModule;
 import com.dot.makeyourtrip.utils.type.Authentification;
@@ -9,9 +10,15 @@ import com.dot.makeyourtrip.utils.type.Transport;
 import com.dot.makeyourtrip.utils.type.Trip;
 import com.dot.makeyourtrip.utils.type.User;
 import com.dot.makeyourtrip.views.activity.inscription.InscriptionViewModel;
+import com.dot.makeyourtrip.views.activity.lodge.ListItemLodgeViewModel;
+import com.dot.makeyourtrip.views.activity.lodge.LodgeViewModel;
 import com.dot.makeyourtrip.views.activity.login.LoginViewModel;
 import com.dot.makeyourtrip.views.activity.main.MainActivity;
+import com.dot.makeyourtrip.views.activity.trip.TripActivity;
+import com.dot.makeyourtrip.views.activity.trip.timeline.ListItemTimeLinePlaceViewModel;
+import com.dot.makeyourtrip.views.activity.trip.timeline.TimelineViewModel;
 import com.dot.makeyourtrip.views.fragment.place.PlaceViewModel;
+import com.dot.makeyourtrip.views.fragment.setting.SettingViewModel;
 import com.dot.makeyourtrip.views.fragment.trip.AddTripDialog;
 import com.dot.makeyourtrip.views.fragment.trip.ListItemTripEmptyViewModel;
 import com.dot.makeyourtrip.views.fragment.trip.TripViewModel;
@@ -22,6 +29,7 @@ import dagger.Component;
 
 @Singleton
 @Component(modules = {
+        MYTImage.class,
         RetrofitModule.class,
         SharedPreferenceModule.class,
         Authentification.class,
@@ -45,4 +53,18 @@ public interface MYTComponent {
     void inject(ListItemTripEmptyViewModel listItemTripEmptyViewModel);
 
     void inject(PlaceViewModel placeViewModel);
+
+    void inject(com.dot.makeyourtrip.views.activity.trip.TripViewModel tripViewModel);
+
+    void inject(TimelineViewModel timelineViewModel);
+
+    void inject(TripActivity tripActivity);
+
+    void inject(SettingViewModel settingViewModel);
+
+    void inject(ListItemTimeLinePlaceViewModel listItemTimeLinePlaceViewModel);
+
+    void inject(LodgeViewModel lodgeViewModel);
+
+    void inject(ListItemLodgeViewModel listItemLodgeViewModel);
 }

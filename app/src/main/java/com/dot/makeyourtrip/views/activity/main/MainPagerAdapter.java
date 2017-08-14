@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.dot.makeyourtrip.views.fragment.lodge.LodgeFragment;
 import com.dot.makeyourtrip.views.fragment.place.PlaceFragment;
+import com.dot.makeyourtrip.views.fragment.setting.SettingFragment;
 import com.dot.makeyourtrip.views.fragment.trip.TripFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
@@ -18,7 +18,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0: return new TripFragment();
             case 1: return new PlaceFragment();
-            case 2: return new LodgeFragment();
+            case 2: return new SettingFragment();
             default: return null;
         }
     }

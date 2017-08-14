@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.trip.detail.DetailViewModel"/>
+    </data>
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/content"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dateStart"
+                android:text="@{viewModel.dateStart}"
+                android:gravity="center"
+                android:onClick="@{viewModel::onClickDateStart}"
+                app:layout_widthPercent="50%"
+                app:layout_heightPercent="10%"/>
+
+            <TextView
+                android:id="@+id/dateEnd"
+                android:text="@{viewModel.dateEnd}"
+                android:gravity="center"
+                android:onClick="@{viewModel::onClickDateEnd}"
+                android:layout_toRightOf="@id/dateStart"
+                app:layout_widthPercent="50%"
+                app:layout_heightPercent="10%"/>
+
+            <TextView
+                android:id="@+id/descriptionTitle"
+                android:text="Description"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:layout_below="@id/dateStart"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="10%"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_below="@id/descriptionTitle"
+                android:onClick="@{viewModel::onClickDescription}"
+                android:text="@{viewModel.description}"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="10%"/>
+
+            <TextView
+                android:id="@+id/budgetTitle"
+                android:text="Budget"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:layout_below="@id/description"
+                app:layout_widthPercent="80%"
+                app:layout_heightPercent="10%"/>
+
+            <!--android:onClick="@{viewModel::onClickAddBudget}"-->
+            <ImageView
+                android:id="@+id/budgetAdd"
+                android:layout_toRightOf="@id/budgetTitle"
+                android:layout_alignBottom="@+id/budgetTitle"
+                android:src="@drawable/ic_add_white_24dp"
+                android:background="?attr/selectableItemBackground"
+                android:padding="5dp"
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="10%"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_below="@id/budgetTitle"
+                app:layoutManager="LinearLayoutManager"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="50%">
+            </android.support.v7.widget.RecyclerView>
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_loop_white_24dp"
+            android:onClick="@{viewModel::onClickRefresh}"
+            app:fabSize="normal"
+            app:layout_anchor="@id/content"
+            app:layout_anchorGravity="bottom|right|end"/>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

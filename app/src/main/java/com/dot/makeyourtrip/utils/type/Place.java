@@ -11,8 +11,10 @@ import dagger.Provides;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -28,7 +30,13 @@ public class Place {
 
         @FormUrlEncoded
         @POST("/places")
-        Call<PlaceModel> createPlace();
+        Call<PlaceModel> createPlace(@Header("Authorization") String auth,
+                                     @Field("user_id") String userId,
+                                     @Field("trip_id") String tripId,
+                                     @Field("provider_id") String providerId,
+                                     @Field("name") String name,
+                                     @Field("latitude") Double latitude,
+                                     @Field("longitude") Double longitude);
 
         @PUT("/places/{id}")
         Call<PlaceModel> modifyPlace(@Path("id") String id);

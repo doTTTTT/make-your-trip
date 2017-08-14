@@ -8,11 +8,11 @@ public class LodgeModel {
     @SerializedName("totals_days")
     public Integer TotalDays;
 
+    @SerializedName("trip_id")
+    public String TripID;
+
     @SerializedName("name")
     public String Name;
-
-    @SerializedName("trip_id")
-    public Integer TripID;
 
     @SerializedName("location")
     public String Location;
@@ -23,20 +23,26 @@ public class LodgeModel {
     @SerializedName("end_date")
     public String EndDate;
 
+    @SerializedName("_id")
+    public String ID;
+
     @SerializedName("longitude")
     public Double Longitude;
 
     @SerializedName("latitude")
     public Double Latitude;
 
-    @SerializedName("_id")
-    public String ID;
-
     @SerializedName("provider_images")
     public List<String> Images;
 
     @SerializedName("provider_name")
     public String ProviderName;
+
+    @SerializedName("provider_url")
+    public String ProviderUrl;
+
+    @SerializedName("provider_id")
+    public String ProviderID;
 
     @SerializedName("position")
     public Integer Position;

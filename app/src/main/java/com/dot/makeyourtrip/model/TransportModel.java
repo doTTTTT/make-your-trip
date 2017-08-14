@@ -5,12 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class TransportModel {
-    @SerializedName("_id")
-    public String ID;
-
-    @SerializedName("name")
-    public String Name;
-
     @SerializedName("trip_id")
     public String TripID;
 

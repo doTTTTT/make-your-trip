@@ -24,15 +24,4 @@ public class TripModel {
 
     @SerializedName("roadmap")
     public List<RoadMap> RoadMaps;
-
-    public class RoadMap {
-        @SerializedName("event_type")
-        public String EventType;
-
-        @SerializedName("event_id")
-        public List<Object> Events;
-
-        @SerializedName("_id")
-        public String ID;
-    }
 }

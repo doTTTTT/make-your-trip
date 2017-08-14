@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.trip.timeline.ListItemTimeLineViewModel"/>
+    </data>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <RelativeLayout
+            android:id="@+id/indicaterTimeLine"
+            android:layout_margin="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/item_time_line"
+                android:padding="10dp"/>
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card"
+            android:layout_toRightOf="@id/indicaterTimeLine"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            app:cardElevation="8dp"
+            app:cardPreventCornerOverlap="true">
+
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imagePlace"
+                    android:scaleType="centerCrop"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="80%"/>
+
+                <TextView
+                    android:text="@{viewModel.title}"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:layout_below="@id/imagePlace"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="20%"/>
+            </android.support.percent.PercentRelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+</layout>

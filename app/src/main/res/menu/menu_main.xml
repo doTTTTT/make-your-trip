@@ -17,23 +17,9 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/action_lodge"
+        android:id="@+id/action_setting"
         android:enabled="true"
-        android:title="Lodge"
-        android:icon="@drawable/ic_home_white_24dp"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings_white_24dp"
         app:showAsAction="always"/>
-
-    <!--<item-->
-        <!--android:id="@+id/action_transport"-->
-        <!--android:enabled="true"-->
-        <!--android:title="Transport"-->
-        <!--android:icon="@mipmap/ic_launcher"-->
-        <!--app:showAsAction="always"/>-->
-
-    <!--<item-->
-        <!--android:id="@+id/action_aucun"-->
-        <!--android:enabled="true"-->
-        <!--android:title="Aucun"-->
-        <!--android:icon="@mipmap/ic_launcher"-->
-        <!--app:showAsAction="always"/>-->
 </menu>

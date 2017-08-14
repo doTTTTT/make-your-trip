@@ -21,22 +21,18 @@ import com.dot.makeyourtrip.views.activity.login.LoginActivity;
 
 import javax.inject.Inject;
 
-public class MainActivity extends Activity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends Activity<ActivityMainBinding> implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     @Inject Authentification.AuthentificationInterface authentification;
     @Inject MYTManager manager;
 
-    private ActivityMainBinding binding;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initView(ActivityMainBinding binding) {
         getComponent().inject(this);
 
         Log.d("Token", "" + manager.getToken());
         Log.d("UserID", "" + manager.getUserID());
 
         if (manager.isLoggedIn()) {
-            binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
             binding.setViewModel(new MainViewModel());
             BottomNavigationViewHelper.removeShiftMode(binding.bottomMenu);
 
@@ -45,6 +41,11 @@ public class MainActivity extends Activity implements View.OnClickListener, Bott
         } else {
             startActivity(new Intent(this, LoginActivity.class));
         }
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_main;
     }
 
     @Override
@@ -76,7 +77,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Bott
             case R.id.action_place:
                 binding.container.setCurrentItem(1);
                 break;
-            case R.id.action_lodge:
+            case R.id.action_setting:
                 binding.container.setCurrentItem(2);
                 break;
         }

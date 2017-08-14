@@ -5,14 +5,20 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class PlaceModel {
-    @SerializedName("totals_days")
-    public Integer TotalDays;
+    @SerializedName("longitude")
+    public Double Longitude;
+
+    @SerializedName("latitude")
+    public Double Latitude;
 
     @SerializedName("name")
     public String Name;
 
+    @SerializedName("totals_days")
+    public Integer TotalDays;
+
     @SerializedName("trip_id")
-    public Integer TripID;
+    public String TripID;
 
     @SerializedName("location")
     public String Location;
@@ -23,12 +29,6 @@ public class PlaceModel {
     @SerializedName("end_date")
     public String EndDate;
 
-    @SerializedName("longitude")
-    public Double Longitude;
-
-    @SerializedName("latitude")
-    public Double Latitude;
-
     @SerializedName("_id")
     public String ID;
 
@@ -37,6 +37,9 @@ public class PlaceModel {
 
     @SerializedName("provider_name")
     public String ProviderName;
+
+    @SerializedName("provider_id")
+    public String ProviderId;
 
     @SerializedName("position")
     public Integer Position;

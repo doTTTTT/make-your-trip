@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dot.makeyourtrip">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -23,11 +25,29 @@
         <activity
             android:name=".views.activity.login.LoginActivity"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
 
         <activity
             android:name=".views.activity.inscription.InscriptionActivity"
             android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".views.activity.trip.TripActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".views.activity.lodge.LodgeActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBNckYi-tl82jBeUTsGelFGcRc1j-GU0s4"/>
     </application>
 </manifest>

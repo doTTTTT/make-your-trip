@@ -3,6 +3,7 @@ package com.dot.makeyourtrip.views.fragment.trip;
 import android.databinding.BaseObservable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.View;
 
 import com.dot.makeyourtrip.model.TripModel;
 import com.dot.makeyourtrip.utils.ApiUtils;
@@ -57,6 +58,10 @@ public class TripViewModel extends BaseObservable implements Callback<List<TripM
 
     @Override
     public void onRefresh() {
+        tripRequest.getTripUser(manager.getToken(), manager.getUserID()).enqueue(this);
+    }
+
+    public void onClickRefresh(View view){
         tripRequest.getTripUser(manager.getToken(), manager.getUserID()).enqueue(this);
     }
 }

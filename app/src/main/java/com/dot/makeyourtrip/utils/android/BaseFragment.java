@@ -16,10 +16,13 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     public abstract int getLayoutID();
     public abstract void initView(T binding);
 
+    private Bundle save;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         T binding = DataBindingUtil.inflate(inflater, getLayoutID(), container, false);
+        save = savedInstanceState;
 
         initView(binding);
 
@@ -28,6 +31,10 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends Fragment {
     }
 
     public MYTComponent getComponent(){
-        return ((MainActivity) getActivity()).getComponent();
+        return ((Activity) getActivity()).getComponent();
+    }
+
+    public Bundle getSaveBundle(){
+        return save;
     }
 }

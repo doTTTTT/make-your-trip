@@ -9,7 +9,7 @@ import com.dot.makeyourtrip.R;
 import com.dot.makeyourtrip.databinding.ActivityInscriptionBinding;
 import com.dot.makeyourtrip.utils.android.Activity;
 
-public class InscriptionActivity extends Activity implements InscriptionContract.View {
+public class InscriptionActivity extends Activity<ActivityInscriptionBinding> implements InscriptionContract.View {
     enum Type {
         NAME,
         EMAIL,
@@ -17,16 +17,18 @@ public class InscriptionActivity extends Activity implements InscriptionContract
         PASSWORD_COMF
     }
 
-    private ActivityInscriptionBinding binding;
     private InscriptionViewModel viewModel;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_inscription);
+    protected void initView(ActivityInscriptionBinding binding) {
         viewModel = new InscriptionViewModel(this);
         getComponent().inject(viewModel);
         binding.setViewModel(viewModel);
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_inscription;
     }
 
     @Override

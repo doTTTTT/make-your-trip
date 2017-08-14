@@ -3,6 +3,7 @@ package com.dot.makeyourtrip.views.fragment.place;
 import android.databinding.BaseObservable;
 
 import com.dot.makeyourtrip.model.PlaceModel;
+import com.dot.makeyourtrip.model.RoadMap;
 
 public class ListItemPlaceViewModel extends BaseObservable {
     private PlaceModel model;

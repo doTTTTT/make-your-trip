@@ -3,6 +3,7 @@ package com.dot.makeyourtrip.utils.module;
 import android.content.Context;
 
 import com.dot.makeyourtrip.utils.ApiUtils;
+import com.dot.makeyourtrip.utils.NewsFeedItemTypeAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -15,13 +16,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class RetrofitModule {
-    private static final String BASE_URL = "https://dev.api.myt.patate.io";
+    private static final String BASE_URL = "https://api.myt.patate.io";
 
     @Provides
     @Singleton
     public Gson provideGson(){
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        return gsonBuilder.create();
+        return new GsonBuilder()
+                .registerTypeAdapterFactory(new NewsFeedItemTypeAdapterFactory())
+                .create();
     }
 
     @Provides

@@ -12,19 +12,20 @@ import com.dot.makeyourtrip.utils.android.Activity;
 import com.dot.makeyourtrip.views.activity.inscription.InscriptionActivity;
 import com.dot.makeyourtrip.views.activity.main.MainActivity;
 
-public class LoginActivity extends Activity implements LoginContract.View {
+public class LoginActivity extends Activity<ActivityLoginBinding> implements LoginContract.View {
 
     private static final int SIGN_UP_REQUEST = 1;
 
-    private ActivityLoginBinding binding;
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+    protected void initView(ActivityLoginBinding binding) {
         LoginViewModel viewModel = new LoginViewModel(this);
         getComponent().inject(viewModel);
         binding.setViewModel(viewModel);
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.activity_login;
     }
 
     @Override
@@ -72,5 +73,9 @@ public class LoginActivity extends Activity implements LoginContract.View {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

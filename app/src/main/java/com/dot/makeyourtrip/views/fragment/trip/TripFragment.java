@@ -31,10 +31,11 @@ public class TripFragment extends BaseFragment<FragmentTripBinding> implements T
         tripAdapter = new TripAdapter((Activity) getActivity(), list);
 
         binding.tripList.setClipToPadding(false);
-        binding.tripList.setPadding(dpToPx(30), dpToPx(50), dpToPx(30), dpToPx(50));
+        binding.tripList.setPadding(dpToPx(30), dpToPx(10), dpToPx(30), dpToPx(50));
         binding.tripList.setPageMargin(30);
         binding.tripList.setAdapter(tripAdapter);
         //binding.refresh.setOnRefreshListener(viewModel);
+        binding.refresh.setEnabled(false);
     }
 
     public int dpToPx(int dp) {

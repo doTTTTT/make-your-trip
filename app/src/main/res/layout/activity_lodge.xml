@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.lodge.LodgeViewModel"/>
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            tools:loadImage="@{@string/background}"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="100%"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lodgeSearch"
+            app:layout_widthPercent="80%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/lodgeLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/lodgeIconSearch"
+            android:layout_toRightOf="@id/lodgeSearch"
+            android:src="@drawable/ic_search_white_24dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:onClick="@{(v) -> viewModel.onClickSearch(v, lodgeLocation)}"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="10%"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/lodgeCheckin"
+            android:text="Checkin"
+            android:gravity="center"
+            android:layout_below="@id/lodgeSearch"
+            android:onClick="@{viewModel::onClickCheckin}"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="10%"/>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/lodgeCheckout"
+            android:layout_below="@id/lodgeSearch"
+            android:layout_toRightOf="@id/lodgeCheckin"
+            android:text="Checkout"
+            android:gravity="center"
+            android:onClick="@{viewModel::onClickCheckout}"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="10%"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lodgeList"
+            android:layout_below="@id/lodgeCheckin"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="80%">
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.percent.PercentRelativeLayout>
+</layout>
