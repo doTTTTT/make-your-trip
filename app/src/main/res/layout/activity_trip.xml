@@ -23,11 +23,11 @@
             android:layout_height="wrap_content">
         </android.support.design.widget.TabLayout>
 
-        <android.support.v4.view.ViewPager
+        <com.dot.makeyourtrip.utils.android.NonSwipeableViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tab_host">
-        </android.support.v4.view.ViewPager>
+        </com.dot.makeyourtrip.utils.android.NonSwipeableViewPager>
     </RelativeLayout>
 </layout>

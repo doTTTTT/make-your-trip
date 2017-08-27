@@ -8,6 +8,7 @@ import com.dot.makeyourtrip.views.activity.trip.BaseTripFragment;
 import com.dot.makeyourtrip.views.activity.trip.TripActivity;
 
 public class DetailFragment extends BaseTripFragment<FragmentDetailBinding> {
+    private DetailViewModel viewModel;
     @Override
     public int getLayoutID() {
         return R.layout.fragment_detail;
@@ -15,11 +16,12 @@ public class DetailFragment extends BaseTripFragment<FragmentDetailBinding> {
 
     @Override
     public void initView(FragmentDetailBinding binding) {
-        binding.setViewModel(new DetailViewModel((TripActivity) getActivity()));
+        viewModel = new DetailViewModel((TripActivity) getActivity());
+        binding.setViewModel(viewModel);
     }
 
     @Override
     public void onTripUpdate(TripModel tripModel) {
-
+        viewModel.setTrip(tripModel);
     }
 }

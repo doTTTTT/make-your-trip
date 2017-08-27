@@ -8,6 +8,7 @@ import com.dot.makeyourtrip.databinding.FragmentMapBinding;
 import com.dot.makeyourtrip.model.TripModel;
 import com.dot.makeyourtrip.utils.android.Activity;
 import com.dot.makeyourtrip.views.activity.trip.BaseTripFragment;
+import com.dot.makeyourtrip.views.activity.trip.TripActivity;
 import com.google.android.gms.maps.MapView;
 
 public class MapFragment extends BaseTripFragment<FragmentMapBinding> {
@@ -21,7 +22,7 @@ public class MapFragment extends BaseTripFragment<FragmentMapBinding> {
 
     @Override
     public void initView(FragmentMapBinding binding) {
-        viewModel = new MapViewModel((Activity) getActivity());
+        viewModel = new MapViewModel((TripActivity) getActivity());
 
         mapView = binding.maps;
 

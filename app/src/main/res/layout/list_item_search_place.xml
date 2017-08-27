@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.place.ListItemSearchPlaceViewModel"/>
+    </data>
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imagePlace"
+                android:scaleType="centerCrop"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="80%"/>
+
+            <TextView
+                android:gravity="center"
+                android:padding="5dp"
+                android:layout_below="@id/imagePlace"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="20%"/>
+        </android.support.percent.PercentRelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>

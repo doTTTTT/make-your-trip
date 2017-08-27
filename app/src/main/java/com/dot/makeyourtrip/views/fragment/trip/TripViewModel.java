@@ -43,6 +43,9 @@ public class TripViewModel extends BaseObservable implements Callback<List<TripM
             case 200:
                 view.setList(response.body());
                 break;
+            case 401:
+                manager.logOut();
+                view.logOut();
             default:
                 apiUtils.parseErrorAndShow(TAG, response);
                 break;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="transportType">
+        <item>Plane</item>
+        <item>Car</item>
+        <item>Taxi</item>
+        <item>Uber</item>
+        <item>Bike</item>
+        <item>Bus</item>
+    </string-array>
+
+    <string-array name="placeType">
+        <item>Other</item>
+        <item>Restaurant</item>
+        <item>Food</item>
+        <item>Store</item>
+        <item>Point of Interest</item>
+        <item>Bar</item>
+        <item>Shopping Mall</item>
+        <item>Museum</item>
+        <item>Movie Theater</item>
+        <item>Night Club</item>
+    </string-array>
+</resources>

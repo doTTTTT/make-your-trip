@@ -9,5 +9,7 @@ public interface TripContract {
         public void setList(List<TripModel> list);
 
         public void setRefreshing(Boolean refreshing);
+
+        void logOut();
     }
 }

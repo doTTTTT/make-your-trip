@@ -41,6 +41,10 @@ public class AddTripDialog implements DialogInterface.OnClickListener, Callback<
         editText = (EditText) dialog.findViewById(R.id.tripName);
     }
 
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        dialog.setOnDismissListener(onDismissListener);
+    }
+
     @Override
     public void onClick(DialogInterface dialog, int which) {
         switch (which) {

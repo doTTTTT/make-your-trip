@@ -2,9 +2,13 @@ package com.dot.makeyourtrip.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
 import java.util.List;
 
 public class TransportModel {
+    @SerializedName("_id")
+    public String ID;
+
     @SerializedName("trip_id")
     public String TripID;
 
@@ -12,13 +16,13 @@ public class TransportModel {
     public String DepartureLocation;
 
     @SerializedName("departure_date")
-    public String DepartureDate;
+    public Date DepartureDate;
 
     @SerializedName("return_location")
     public String ReturnLocation;
 
     @SerializedName("return_date")
-    public String ReturnDate;
+    public Date ReturnDate;
 
     @SerializedName("departure_duration")
     public String DepartureDuration;

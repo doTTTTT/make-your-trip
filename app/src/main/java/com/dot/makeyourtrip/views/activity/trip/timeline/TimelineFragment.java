@@ -1,5 +1,8 @@
 package com.dot.makeyourtrip.views.activity.trip.timeline;
 
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+
 import com.dot.makeyourtrip.R;
 import com.dot.makeyourtrip.databinding.FragmentTimelineBinding;
 import com.dot.makeyourtrip.model.BaseTripModel;
@@ -7,6 +10,7 @@ import com.dot.makeyourtrip.model.RoadMap;
 import com.dot.makeyourtrip.model.TripModel;
 import com.dot.makeyourtrip.utils.android.Activity;
 import com.dot.makeyourtrip.views.activity.trip.BaseTripFragment;
+import com.dot.makeyourtrip.views.activity.trip.TripActivity;
 
 import java.util.ArrayList;
 
@@ -24,12 +28,15 @@ public class TimelineFragment extends BaseTripFragment<FragmentTimelineBinding> 
     public void initView(FragmentTimelineBinding binding) {
         this.binding = binding;
 
-        adapter = new TimelineAdapter(getComponent(), new ArrayList<RoadMap>());
-        viewModel = new TimelineViewModel((Activity) getActivity(), adapter, this);
+        adapter = new TimelineAdapter((TripActivity) getActivity());
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        viewModel = new TimelineViewModel((TripActivity) getActivity(), adapter, this);
 
         binding.tripList.setAdapter(adapter);
         binding.setViewModel(viewModel);
-        binding.refresh.setOnRefreshListener(viewModel);
+        //binding.refresh.setOnRefreshListener(viewModel);
+        touchHelper.attachToRecyclerView(binding.tripList);
     }
 
     @Override
@@ -44,6 +51,6 @@ public class TimelineFragment extends BaseTripFragment<FragmentTimelineBinding> 
 
     @Override
     public void setRefreshing(boolean refreshing) {
-        binding.refresh.setRefreshing(refreshing);
+        //binding.refresh.setRefreshing(refreshing);
     }
 }

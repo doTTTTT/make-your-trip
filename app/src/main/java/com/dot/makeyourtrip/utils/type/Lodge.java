@@ -50,12 +50,15 @@ public class Lodge {
                                      @Field("provider_name") String providerName,
                                      @Field("type") String type);
 
+        @FormUrlEncoded
         @PUT("/lodges/{id}")
-        Call<LodgeModel> modifyTrip(@Path("id") String ID,
-                                    @Body ResponseBody body);
+        Call<ResponseBody> modifyLodge(@Header("Authorization") String token,
+                                       @Path("id") String id,
+                                       @Field("position") Integer position);
 
         @DELETE("/lodges/{id}")
-        Call<LodgeModel> deleteTrip(@Path("id") String ID);
+        Call<ResponseBody> deleteLodge(@Header("Authorization") String token,
+                                    @Path("id") String ID);
     }
 
     @Provides

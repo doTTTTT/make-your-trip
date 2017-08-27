@@ -17,10 +17,22 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/dateTitle"
+                android:text="Date"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:visibility="gone"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="10%"/>
+
+            <TextView
                 android:id="@+id/dateStart"
                 android:text="@{viewModel.dateStart}"
                 android:gravity="center"
                 android:onClick="@{viewModel::onClickDateStart}"
+                android:layout_below="@id/dateTitle"
+                android:visibility="gone"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="10%"/>
 
@@ -30,6 +42,8 @@
                 android:gravity="center"
                 android:onClick="@{viewModel::onClickDateEnd}"
                 android:layout_toRightOf="@id/dateStart"
+                android:layout_below="@id/dateTitle"
+                android:visibility="gone"
                 app:layout_widthPercent="50%"
                 app:layout_heightPercent="10%"/>
 
@@ -49,36 +63,7 @@
                 android:onClick="@{viewModel::onClickDescription}"
                 android:text="@{viewModel.description}"
                 app:layout_widthPercent="100%"
-                app:layout_heightPercent="10%"/>
-
-            <TextView
-                android:id="@+id/budgetTitle"
-                android:text="Budget"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:layout_below="@id/description"
-                app:layout_widthPercent="80%"
-                app:layout_heightPercent="10%"/>
-
-            <!--android:onClick="@{viewModel::onClickAddBudget}"-->
-            <ImageView
-                android:id="@+id/budgetAdd"
-                android:layout_toRightOf="@id/budgetTitle"
-                android:layout_alignBottom="@+id/budgetTitle"
-                android:src="@drawable/ic_add_white_24dp"
-                android:background="?attr/selectableItemBackground"
-                android:padding="5dp"
-                app:layout_widthPercent="20%"
-                app:layout_heightPercent="10%"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list"
-                android:layout_below="@id/budgetTitle"
-                app:layoutManager="LinearLayoutManager"
-                app:layout_widthPercent="100%"
-                app:layout_heightPercent="50%">
-            </android.support.v7.widget.RecyclerView>
+                app:layout_heightPercent="70%"/>
         </android.support.percent.PercentRelativeLayout>
 
         <android.support.design.widget.FloatingActionButton

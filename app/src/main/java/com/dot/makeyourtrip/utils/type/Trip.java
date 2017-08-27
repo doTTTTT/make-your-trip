@@ -6,6 +6,7 @@ import java.util.List;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.http.DELETE;
@@ -34,13 +35,15 @@ public class Trip {
                                    @Field("user_id") String userID,
                                    @Field("name") String name);
 
+        @FormUrlEncoded
         @PUT("/trips/{id}")
         Call<TripModel> modifyTrip(@Header("Authorization") String token,
-                                   @Path("id") String ID);
+                                   @Path("id") String ID,
+                                   @Field("description") String description);
 
         @DELETE("/trips/{id}")
-        Call<TripModel> deleteTrip(@Header("Authorization") String token,
-                                   @Path("id") String ID);
+        Call<ResponseBody> deleteTrip(@Header("Authorization") String token,
+                                      @Path("id") String ID);
     }
 
     @Provides

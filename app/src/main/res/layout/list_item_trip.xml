@@ -20,7 +20,8 @@
                 android:scaleType="centerCrop"
                 app:layout_widthPercent="100%"
                 app:layout_heightPercent="100%"
-                tools:loadImage="@{@string/background}"/>
+                tools:loadBackgroundTrip="@{viewModel.randomPlace}"
+                tools:viewModel="@{viewModel}"/>
 
             <View
                 android:background="@drawable/background_item_trip"
@@ -29,6 +30,7 @@
                 app:layout_heightPercent="30%"/>
 
             <android.support.percent.PercentRelativeLayout
+                android:id="@+id/root"
                 android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

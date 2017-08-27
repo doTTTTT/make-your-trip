@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.http.DELETE;
@@ -38,11 +39,15 @@ public class Place {
                                      @Field("latitude") Double latitude,
                                      @Field("longitude") Double longitude);
 
+        @FormUrlEncoded
         @PUT("/places/{id}")
-        Call<PlaceModel> modifyPlace(@Path("id") String id);
+        Call<ResponseBody> modifyPlace(@Header("Authorization") String token,
+                                       @Path("id") String id,
+                                       @Field("position") Integer position);
 
         @DELETE("/places/{id}")
-        Call<PlaceModel> deletePlace(@Path("id") String id);
+        Call<ResponseBody> deletePlace(@Header("Authorization") String token,
+                                       @Path("id") String id);
     }
 
     @Singleton

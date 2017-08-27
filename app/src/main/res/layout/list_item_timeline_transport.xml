@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="viewModel" type="com.dot.makeyourtrip.views.activity.trip.timeline.ListItemTimeLineTransportViewModel"/>
@@ -27,7 +28,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                android:padding="15dp"/>
+                android:padding="15dp"
+                tools:loadTransportIcon="@{viewModel.type}"/>
         </RelativeLayout>
 
         <android.support.v7.widget.CardView
@@ -38,11 +40,12 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            app:cardElevation="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
             app:cardPreventCornerOverlap="true">
 
             <android.support.percent.PercentRelativeLayout
-                android:background="@color/colorPrimary"
+                android:background="@color/backgroundMenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -50,16 +53,92 @@
                     android:id="@+id/imagePlace"
                     android:scaleType="centerCrop"
                     app:layout_widthPercent="100%"
-                    app:layout_heightPercent="80%"/>
+                    app:layout_heightPercent="100%"/>
+
+                <ImageView
+                    android:id="@+id/departure"
+                    android:src="@drawable/ic_arrow_upward_white_24dp"
+                    android:scaleType="center"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="30%"/>
+
+                <View
+                    android:id="@+id/departureSeparator"
+                    android:background="#FFFFFF"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/departure"
+                    app:layout_widthPercent="40%"
+                    app:layout_marginLeftPercent="5%"
+                    app:layout_marginRightPercent="5%"/>
+
+                <ImageView
+                    android:id="@+id/transportReturn"
+                    android:src="@drawable/ic_arrow_downward_white_24dp"
+                    android:layout_toRightOf="@id/departure"
+                    android:scaleType="center"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="30%"/>
+
+                <View
+                    android:id="@+id/returnSeparator"
+                    android:background="#FFFFFF"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/transportReturn"
+                    android:layout_toRightOf="@id/departureSeparator"
+                    app:layout_widthPercent="40%"
+                    app:layout_marginLeftPercent="5%"
+                    app:layout_marginRightPercent="5%"/>
 
                 <TextView
-                    android:text="@{viewModel.title}"
-                    android:background="@color/backgroundMenu"
+                    android:id="@+id/departureDate"
+                    android:text="@{viewModel.departureDate}"
                     android:gravity="center"
-                    android:padding="5dp"
-                    android:layout_below="@id/imagePlace"
-                    app:layout_widthPercent="100%"
-                    app:layout_heightPercent="20%"/>
+                    android:layout_below="@id/departureSeparator"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="15%"/>
+
+                <TextView
+                    android:id="@+id/departureHour"
+                    android:text="@{viewModel.departureHour}"
+                    android:gravity="center"
+                    android:layout_below="@id/departureDate"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="15%"/>
+
+                <TextView
+                    android:id="@+id/returnDate"
+                    android:text="@{viewModel.returnDate}"
+                    android:gravity="center"
+                    android:layout_toRightOf="@id/departureDate"
+                    android:layout_below="@id/returnSeparator"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="15%"/>
+
+                <TextView
+                    android:id="@+id/returnHour"
+                    android:text="@{viewModel.returnHour}"
+                    android:gravity="center"
+                    android:layout_toRightOf="@id/departureHour"
+                    android:layout_below="@id/returnDate"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="15%"/>
+
+                <TextView
+                    android:id="@+id/departureLocation"
+                    android:text="@{viewModel.departureLocation}"
+                    android:gravity="center"
+                    android:layout_below="@id/departureHour"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="40%"/>
+
+                <TextView
+                    android:id="@+id/returnLocation"
+                    android:text="@{viewModel.returnLocation}"
+                    android:gravity="center"
+                    android:layout_below="@id/returnHour"
+                    android:layout_toRightOf="@id/departureLocation"
+                    app:layout_widthPercent="50%"
+                    app:layout_heightPercent="40%"/>
             </android.support.percent.PercentRelativeLayout>
         </android.support.v7.widget.CardView>
     </RelativeLayout>

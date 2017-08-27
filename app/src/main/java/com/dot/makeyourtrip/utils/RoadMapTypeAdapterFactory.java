@@ -22,7 +22,7 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 
-public class NewsFeedItemTypeAdapterFactory implements TypeAdapterFactory {
+public class RoadMapTypeAdapterFactory implements TypeAdapterFactory {
     @Override
     @SuppressWarnings("unchecked")
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
@@ -66,10 +66,6 @@ public class NewsFeedItemTypeAdapterFactory implements TypeAdapterFactory {
         @Override
         public RoadMap read(JsonReader in) throws IOException {
             JsonObject objectJson = jsonElementAdapter.read(in).getAsJsonObject();
-
-            Log.d("GSONADAPTER", "Json: " + objectJson.toString());
-            Log.d("GSONADAPTER", "Type: " + objectJson.get("event_type"));
-            Log.d("GSONADAPTER", "TypeP: " + objectJson.get("event_type").toString().replace("\"", ""));
 
             switch (objectJson.get("event_type").toString().replace("\"", "")) {
                 case "Place": return placeAdapter.fromJsonTree(objectJson);

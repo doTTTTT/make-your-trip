@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.dd.CircularProgressButton;
 import com.dot.makeyourtrip.R;
 import com.dot.makeyourtrip.databinding.ActivityMainBinding;
@@ -21,9 +22,13 @@ import com.dot.makeyourtrip.views.activity.login.LoginActivity;
 
 import javax.inject.Inject;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
+
 public class MainActivity extends Activity<ActivityMainBinding> implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     @Inject Authentification.AuthentificationInterface authentification;
     @Inject MYTManager manager;
+
+    private MainViewModel viewModel;
 
     @Override
     protected void initView(ActivityMainBinding binding) {
@@ -33,7 +38,8 @@ public class MainActivity extends Activity<ActivityMainBinding> implements View.
         Log.d("UserID", "" + manager.getUserID());
 
         if (manager.isLoggedIn()) {
-            binding.setViewModel(new MainViewModel());
+            viewModel = new MainViewModel();
+            binding.setViewModel(viewModel);
             BottomNavigationViewHelper.removeShiftMode(binding.bottomMenu);
 
             binding.bottomMenu.setOnNavigationItemSelectedListener(this);
@@ -82,5 +88,13 @@ public class MainActivity extends Activity<ActivityMainBinding> implements View.
                 break;
         }
         return true;
+    }
+
+    public void setBackground(byte[] bitmap) {
+        Glide.with(this).load(bitmap).bitmapTransform(new BlurTransformation(this, 12)).into(binding.background);
+    }
+
+    public MainViewModel getViewModel() {
+        return viewModel;
     }
 }

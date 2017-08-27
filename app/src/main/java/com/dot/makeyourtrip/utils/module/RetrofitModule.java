@@ -3,7 +3,7 @@ package com.dot.makeyourtrip.utils.module;
 import android.content.Context;
 
 import com.dot.makeyourtrip.utils.ApiUtils;
-import com.dot.makeyourtrip.utils.NewsFeedItemTypeAdapterFactory;
+import com.dot.makeyourtrip.utils.RoadMapTypeAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -22,7 +22,8 @@ public class RetrofitModule {
     @Singleton
     public Gson provideGson(){
         return new GsonBuilder()
-                .registerTypeAdapterFactory(new NewsFeedItemTypeAdapterFactory())
+                .setDateFormat("yyyy/MM/dd HH:mm:ss")
+                .registerTypeAdapterFactory(new RoadMapTypeAdapterFactory())
                 .create();
     }
 

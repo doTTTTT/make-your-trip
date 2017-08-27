@@ -67,6 +67,12 @@ public class TripActivity extends Activity<ActivityTripBinding> implements Callb
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.refresh();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

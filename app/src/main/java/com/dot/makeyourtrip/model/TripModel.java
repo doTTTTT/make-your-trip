@@ -22,6 +22,9 @@ public class TripModel {
     @SerializedName("name")
     public String Name;
 
+    @SerializedName("description")
+    public String Description;
+
     @SerializedName("roadmap")
     public List<RoadMap> RoadMaps;
 }

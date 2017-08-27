@@ -2,6 +2,7 @@ package com.dot.makeyourtrip.views.activity.trip.timeline;
 
 import android.content.Intent;
 import android.databinding.BaseObservable;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -11,6 +12,8 @@ import com.dot.makeyourtrip.model.RoadMap;
 import com.dot.makeyourtrip.model.TripModel;
 import com.dot.makeyourtrip.utils.android.Activity;
 import com.dot.makeyourtrip.views.activity.lodge.LodgeActivity;
+import com.dot.makeyourtrip.views.activity.trip.TripActivity;
+import com.dot.makeyourtrip.views.dialog.transport.AddTransportDialog;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -24,12 +27,12 @@ public class TimelineViewModel extends BaseObservable implements SwipeRefreshLay
 
     public static final int PLACE_PICKER_REQUEST = 1;
 
-    private Activity activity;
+    private TripActivity activity;
     private TimelineAdapter adapter;
     private TripModel model;
     private TimelineContract.View view;
 
-    public TimelineViewModel(Activity activity, TimelineAdapter adapter, TimelineContract.View view) {
+    public TimelineViewModel(TripActivity activity, TimelineAdapter adapter, TimelineContract.View view) {
         this.activity = activity;
         this.adapter = adapter;
         this.view = view;
@@ -56,6 +59,11 @@ public class TimelineViewModel extends BaseObservable implements SwipeRefreshLay
 
     public void onClickAddTransport(View view) {
         this.view.closeFabMenu();
+        AddTransportDialog dialog = new AddTransportDialog(activity.getViewModel());
+        Bundle bundle = new Bundle();
+        bundle.putString("TRIP_ID", model.ID);
+        dialog.setArguments(bundle);
+        dialog.show(activity.getSupportFragmentManager(), TAG);
     }
 
     public void setModel(TripModel model) {
@@ -66,6 +74,7 @@ public class TimelineViewModel extends BaseObservable implements SwipeRefreshLay
 
     @Override
     public void onRefresh() {
+        activity.getViewModel().refresh();
         view.setRefreshing(false);
     }
 }

@@ -15,12 +15,16 @@ import com.dot.makeyourtrip.views.activity.lodge.LodgeViewModel;
 import com.dot.makeyourtrip.views.activity.login.LoginViewModel;
 import com.dot.makeyourtrip.views.activity.main.MainActivity;
 import com.dot.makeyourtrip.views.activity.trip.TripActivity;
+import com.dot.makeyourtrip.views.activity.trip.detail.DetailViewModel;
 import com.dot.makeyourtrip.views.activity.trip.timeline.ListItemTimeLinePlaceViewModel;
+import com.dot.makeyourtrip.views.activity.trip.timeline.TimelineAdapter;
 import com.dot.makeyourtrip.views.activity.trip.timeline.TimelineViewModel;
+import com.dot.makeyourtrip.views.dialog.transport.AddTransportDialog;
 import com.dot.makeyourtrip.views.fragment.place.PlaceViewModel;
 import com.dot.makeyourtrip.views.fragment.setting.SettingViewModel;
 import com.dot.makeyourtrip.views.fragment.trip.AddTripDialog;
 import com.dot.makeyourtrip.views.fragment.trip.ListItemTripEmptyViewModel;
+import com.dot.makeyourtrip.views.fragment.trip.ListItemTripViewModel;
 import com.dot.makeyourtrip.views.fragment.trip.TripViewModel;
 
 import javax.inject.Singleton;
@@ -67,4 +71,12 @@ public interface MYTComponent {
     void inject(LodgeViewModel lodgeViewModel);
 
     void inject(ListItemLodgeViewModel listItemLodgeViewModel);
+
+    void inject(AddTransportDialog addTransportDialog);
+
+    void inject(DetailViewModel detailViewModel);
+
+    void inject(ListItemTripViewModel listItemTripViewModel);
+
+    void inject(TimelineAdapter timelineAdapter);
 }

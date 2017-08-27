@@ -7,7 +7,7 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="100dp">
 
         <RelativeLayout
             android:id="@+id/indicaterTimeLine"
@@ -60,9 +60,8 @@
                     android:background="@color/backgroundMenu"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:layout_alignParentBottom="true"
                     app:layout_widthPercent="100%"
-                    app:layout_heightPercent="20%"/>
+                    app:layout_heightPercent="100%"/>
             </android.support.percent.PercentRelativeLayout>
         </android.support.v7.widget.CardView>
     </RelativeLayout>

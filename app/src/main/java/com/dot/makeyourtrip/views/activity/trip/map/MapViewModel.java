@@ -21,6 +21,7 @@ import com.dot.makeyourtrip.model.PlaceModel;
 import com.dot.makeyourtrip.model.RoadMap;
 import com.dot.makeyourtrip.model.TripModel;
 import com.dot.makeyourtrip.utils.android.Activity;
+import com.dot.makeyourtrip.views.activity.trip.TripActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -51,12 +52,12 @@ public class MapViewModel extends BaseObservable implements GoogleApiClient.Conn
     public static final int REQUEST_MAP = 1;
 
     private GoogleMap map;
-    private Activity activity;
+    private TripActivity activity;
     private GoogleApiClient apiClient;
     private List<LatLng> markers;
     private TripModel model;
 
-    public MapViewModel(Activity activity) {
+    public MapViewModel(TripActivity activity) {
         this.activity = activity;
         this.apiClient = new GoogleApiClient.Builder(activity)
                 .addConnectionCallbacks(this)
@@ -81,10 +82,14 @@ public class MapViewModel extends BaseObservable implements GoogleApiClient.Conn
             return;
         }
         map.setMyLocationEnabled(true);
+        map.clear();
+        for (RoadMap tmp : model.RoadMaps){
+            createMarker(tmp);
+        }
     }
 
     public void onClickRefresh(View view){
-
+        activity.getViewModel().refresh();
     }
 
     @Override
@@ -140,29 +145,30 @@ public class MapViewModel extends BaseObservable implements GoogleApiClient.Conn
 
         switch (model.EventType) {
             case "Place":
-                if (((RoadMap.Place) model).Events.Latitude != null) {
+                if (model != null && ((RoadMap.Place) model).Events != null && ((RoadMap.Place) model).Events.Latitude != null) {
                     latLng = new LatLng(((RoadMap.Place) model).Events.Latitude, ((RoadMap.Place) model).Events.Longitude);
                 }
                 break;
         }
+
         if (latLng != null) {
             Log.d(TAG, "Longitude :" + latLng.longitude);
             Log.d(TAG, "Latitude :" + latLng.latitude);
 
-            if (!isAlreadyInIt(latLng, markers)) {
-                MarkerOptions options = new MarkerOptions()
-                        .position(latLng)
-                        .title(((RoadMap.Place) model).Events.Name);
+            //if (!isAlreadyInIt(latLng, markers)) {
+            MarkerOptions options = new MarkerOptions()
+                    .position(latLng)
+                    .title(((RoadMap.Place) model).Events.Name);
 
 
-                CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(latLng, 16);
-                if (map != null) {
-                    map.animateCamera(yourLocation);
-                    map.addMarker(options);
+            CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(latLng, 16);
+            if (map != null) {
+                map.animateCamera(yourLocation);
+                map.addMarker(options);
 
-                    markers.add(latLng);
-                }
+                markers.add(latLng);
             }
+            //}
         }
     }
 
@@ -192,8 +198,11 @@ public class MapViewModel extends BaseObservable implements GoogleApiClient.Conn
     public void setModel(TripModel model) {
         this.model = model;
 
-        for (RoadMap tmp : model.RoadMaps){
-            createMarker(tmp);
+        if (map != null) {
+            map.clear();
+            for (RoadMap tmp : model.RoadMaps){
+                createMarker(tmp);
+            }
         }
 
         notifyChange();

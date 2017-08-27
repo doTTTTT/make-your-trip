@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+    <android.support.percent.PercentRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/transportNameLayout"
+            android:hint="Name"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="10%">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/transportName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/transportType"
+            android:layout_below="@id/transportNameLayout"
+            android:entries="@array/transportType"
+            app:layout_widthPercent="100%"
+            app:layout_heightPercent="20%">
+        </android.support.v7.widget.AppCompatSpinner>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/transportDepartLayout"
+            android:layout_below="@id/transportType"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="60%">
+
+            <ImageView
+                android:id="@+id/transportDepartureTitle"
+                android:src="@drawable/ic_arrow_upward_white_24dp"
+                android:gravity="center"
+                android:padding="10dp"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="20%"/>
+
+            <TextView
+                android:id="@+id/transportDateDeparture"
+                android:layout_below="@id/transportDepartureTitle"
+                android:text="Date Departure"
+                android:gravity="center"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="20%"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="5dp"
+                android:layout_below="@id/transportDateDeparture"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="60%"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="4dp">
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/transportMapDeparture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:id="@+id/transportLocationDeparture"
+                    android:background="@color/backgroundMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </android.support.v7.widget.CardView>
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/transportReturnLayout"
+            android:layout_toRightOf="@id/transportDepartLayout"
+            android:layout_below="@id/transportType"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="60%">
+
+            <ImageView
+                android:id="@+id/transportReturnTitle"
+                android:src="@drawable/ic_arrow_downward_white_24dp"
+                android:gravity="center"
+                android:padding="10dp"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="20%"/>
+
+            <TextView
+                android:id="@+id/transportDateReturn"
+                android:layout_below="@id/transportReturnTitle"
+                android:text="Date Return"
+                android:gravity="center"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="20%"/>
+
+            <android.support.v7.widget.CardView
+                android:layout_margin="5dp"
+                android:layout_below="@id/transportDateReturn"
+                app:layout_widthPercent="100%"
+                app:layout_heightPercent="60%"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="4dp">
+
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/transportMapReturn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:id="@+id/transportLocationReturn"
+                    android:background="@color/backgroundMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </android.support.v7.widget.CardView>
+        </android.support.percent.PercentRelativeLayout>
+
+        <Button
+            android:id="@+id/cancel"
+            android:text="Cancel"
+            android:layout_below="@id/transportDepartLayout"
+            android:background="?attr/selectableItemBackground"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="10%"/>
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_below="@id/transportDepartLayout"
+            android:layout_toRightOf="@id/cancel"
+            android:text="Add"
+            android:background="?attr/selectableItemBackground"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="10%"/>
+    </android.support.percent.PercentRelativeLayout>
+</layout>

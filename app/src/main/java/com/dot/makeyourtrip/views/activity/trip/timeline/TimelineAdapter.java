@@ -2,6 +2,7 @@ package com.dot.makeyourtrip.views.activity.trip.timeline;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,20 +18,45 @@ import com.dot.makeyourtrip.databinding.ListItemTimelineTransportBinding;
 import com.dot.makeyourtrip.model.BaseTripModel;
 import com.dot.makeyourtrip.model.PlaceModel;
 import com.dot.makeyourtrip.model.RoadMap;
+import com.dot.makeyourtrip.utils.ApiUtils;
 import com.dot.makeyourtrip.utils.MYTComponent;
+import com.dot.makeyourtrip.utils.MYTManager;
+import com.dot.makeyourtrip.utils.android.Activity;
+import com.dot.makeyourtrip.utils.type.Lodge;
+import com.dot.makeyourtrip.utils.type.Place;
+import com.dot.makeyourtrip.utils.type.Transport;
+import com.dot.makeyourtrip.views.activity.trip.TripActivity;
 import com.dot.makeyourtrip.views.fragment.place.ListItemPlaceViewModel;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BaseViewHolder> {
+import javax.inject.Inject;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BaseViewHolder> implements ItemTouchHelperAdapter, Callback<ResponseBody> {
     private static final String TAG = TimelineAdapter.class.getSimpleName();
 
-    private List<RoadMap> list;
-    private MYTComponent component;
+    @Inject Place.PlaceRequest placeRequest;
+    @Inject Lodge.LodgeRequest lodgeRequest;
+    @Inject Transport.TransportRequest transportRequest;
+    @Inject MYTManager manager;
+    @Inject ApiUtils apiUtils;
 
-    public TimelineAdapter(MYTComponent component, List<RoadMap> list){
-        this.list = list;
-        this.component = component;
+    private List<RoadMap> list;
+    private TripActivity activity;
+
+    public TimelineAdapter(TripActivity activity) {
+        this.activity = activity;
+
+        this.list = new ArrayList<>();
+
+        activity.getComponent().inject(this);
     }
 
     @Override
@@ -69,6 +95,62 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BaseVi
         notifyDataSetChanged();
     }
 
+    @Override
+    public void onItemDismiss(int position) {
+        RoadMap item = list.get(position);
+        switch (item.EventType) {
+            case "Place": placeRequest.deletePlace(manager.getToken(), ((RoadMap.Place) item).Events.ID).enqueue(this); break;
+            case "Lodge": lodgeRequest.deleteLodge(manager.getToken(), ((RoadMap.Lodge) item).Events.ID).enqueue(this); break;
+            case "Transport": transportRequest.deleteTransport(manager.getToken(), ((RoadMap.Transport) item).Events.ID).enqueue(this); break;
+        }
+        list.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        RoadMap item = list.get(fromPosition);
+        switch (item.EventType) {
+            case "Place":
+                placeRequest.modifyPlace(manager.getToken(), ((RoadMap.Place) item).Events.ID, toPosition).enqueue(this);
+                break;
+            case "Lodge":
+                lodgeRequest.modifyLodge(manager.getToken(), ((RoadMap.Lodge) item).Events.ID, toPosition).enqueue(this);
+                break;
+            case "Transport":
+                transportRequest.modifyTransport(manager.getToken(), ((RoadMap.Transport) item).Events.ID, toPosition).enqueue(this);
+                break;
+        }
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(list, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(list, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        Log.d(TAG, "Code: " + response.code());
+        switch (response.code()) {
+            case 200: break;
+            default:
+                activity.getViewModel().refresh();
+                apiUtils.parseErrorAndShow(TAG, response);
+                break;
+        }
+    }
+
+    @Override
+    public void onFailure(Call<ResponseBody> call, Throwable t) {
+        activity.getViewModel().refresh();
+        Log.e(TAG, "" + t.getMessage());
+    }
+
     public abstract class BaseViewHolder<T extends ViewDataBinding, E> extends RecyclerView.ViewHolder {
         protected T binding;
 
@@ -87,9 +169,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BaseVi
         }
 
         @Override
-        void bind(Object model) {
-
-        }
+        void bind(Object model) {}
     }
 
     public class ViewHolderPlace extends BaseViewHolder<ListItemTimelinePlaceBinding, RoadMap.Place> {
@@ -99,7 +179,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.BaseVi
 
         void bind(RoadMap.Place model) {
             if (binding.getViewModel() == null) {
-                binding.setViewModel(new ListItemTimeLinePlaceViewModel(model, component));
+                binding.setViewModel(new ListItemTimeLinePlaceViewModel(model, activity.getComponent()));
             } else {
                 binding.getViewModel().setModel(model);
             }
