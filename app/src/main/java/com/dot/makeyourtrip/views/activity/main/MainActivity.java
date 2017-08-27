@@ -80,9 +80,9 @@ public class MainActivity extends Activity<ActivityMainBinding> implements View.
             case R.id.action_trips:
                 binding.container.setCurrentItem(0);
                 break;
-            case R.id.action_place:
-                binding.container.setCurrentItem(1);
-                break;
+//            case R.id.action_place:
+//                binding.container.setCurrentItem(1);
+//                break;
             case R.id.action_setting:
                 binding.container.setCurrentItem(2);
                 break;

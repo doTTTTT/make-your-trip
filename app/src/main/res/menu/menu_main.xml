@@ -9,12 +9,12 @@
         android:icon="@drawable/ic_local_airport_white_24dp"
         app:showAsAction="always"/>
 
-    <item
-        android:id="@+id/action_place"
-        android:enabled="true"
-        android:title="Place"
-        android:icon="@drawable/ic_room_white_24dp"
-        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/action_place"-->
+        <!--android:enabled="true"-->
+        <!--android:title="Place"-->
+        <!--android:icon="@drawable/ic_room_white_24dp"-->
+        <!--app:showAsAction="always"/>-->
 
     <item
         android:id="@+id/action_setting"
